@@ -1,18 +1,24 @@
 # vignette-image-classification-cnn
-Demonstrate use of CNNs for image classification
-
-our README file should contain five main pieces of information in the following order:
-
-A one-sentence description at the very top before any (sub)headers:
 
 Vignette on implementing distribution-based clustering using cell type data; created as a class project for PSTAT197A in Fall 2025.
 
-Contributors
+## Contributors: 
+- Nini Yen
+- Oscar Odonnell
+- Kaitlyn Chihaoui
+- Johanna Jansen
 
-Vignette abstract: a brief description in a few sentences of your vignette topic, example data, and outcomes.
+## Vignette abstract: 
 
-Repository contents: an explanation of the directory structure of the repository
+Our vignette explores the topic of image classification using CNNs. CNN stands for Convolutional Neural Networks, which have the powerful ability to analyze and derive meaningful information from images. We will utilize a dataset of over 1,000 butterfly images for 75 different classes. The outcome is to demonstrate the use of CNNs for image classificationtrain and train an image classification model to identify the class of any given butterfly image.
 
-Reference list: 2 or more references to learn more about your topic.
+## Repository contents: 
+-   `results` contains the code that produces the example outputs shown in the primary document
 
+## Reference list:
+ML Practicum: Image Classification. (n.d.). Google for Developers. https://developers.google.com/machine-learning/practica/image-classification/convolutional-neural-networks
+
+GeeksforGeeks. (2025, August 5). Image Classification using CNN. GeeksforGeeks. https://www.geeksforgeeks.org/machine-learning/image-classifier-using-cnn/
+
+## Instructions on use/Contributing to the repository
 A typical README file would also contain instructions on use and instructions on contributing to the repository.
