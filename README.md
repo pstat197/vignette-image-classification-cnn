@@ -1,6 +1,6 @@
 # vignette-image-classification-cnn
 
-Vignette on implementing distribution-based clustering using cell type data; created as a class project for PSTAT197A in Fall 2025.
+Vignette on image classification using convolutional neural networks; created as a class project for PSTAT197A in Fall 2025.
 
 ## Contributors: 
 - Nini Yen
@@ -10,7 +10,7 @@ Vignette on implementing distribution-based clustering using cell type data; cre
 
 ## Vignette abstract: 
 
-Our vignette explores the topic of image classification using CNNs. CNN stands for Convolutional Neural Networks, which have the ability to analyze and derive meaningful information from images. We will utilize a dataset of 6,500 butterfly images for 75 different classes. The outcome is to demonstrate the use of CNNs for image classificationtrain and train an image classification model to identify the class of any given butterfly image.
+Our vignette explores the topic of image classification using CNNs. CNN stands for Convolutional Neural Networks, which have the ability to analyze and derive meaningful information from images. We will utilize a dataset of 6,500 butterfly images for 75 different classes. The outcome is to demonstrate the use of CNNs for image classification and train an image classification model to identify the class of any given butterfly image.
 
 ## Repository contents: 
 - `data`:
