@@ -10,12 +10,14 @@ Vignette on implementing distribution-based clustering using cell type data; cre
 
 ## Vignette abstract: 
 
-Our vignette explores the topic of image classification using CNNs. CNN stands for Convolutional Neural Networks, which have the powerful ability to analyze and derive meaningful information from images. We will utilize a dataset of over 1,000 butterfly images for 75 different classes. The outcome is to demonstrate the use of CNNs for image classificationtrain and train an image classification model to identify the class of any given butterfly image.
+Our vignette explores the topic of image classification using CNNs. CNN stands for Convolutional Neural Networks, which have the ability to analyze and derive meaningful information from images. We will utilize a dataset of 6,500 butterfly images for 75 different classes. The outcome is to demonstrate the use of CNNs for image classificationtrain and train an image classification model to identify the class of any given butterfly image.
 
 ## Repository contents: 
-- `data` 
--   `results` contains the code that produces the example outputs shown in the primary document
--   `scripts`
+- `data`:
+    - Testing_set.csv: contains unlabeled images to be predicted
+    - Training_set.csv: contains names of images and the label
+-   `results` contains the primary vignette document teaching our methods/tools
+-   `scripts` contains the code that produces the example outputs shown in the primary document
 
 ## Reference list:
 ML Practicum: Image Classification. (n.d.). Google for Developers. https://developers.google.com/machine-learning/practica/image-classification/convolutional-neural-networks
