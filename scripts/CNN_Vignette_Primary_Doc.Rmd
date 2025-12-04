@@ -1,0 +1,12 @@
+---
+title: "CNN Vignette Primary Document"
+author: "Kaitlyn, Oscar, Nini, Johanna"
+date: "2025-12-03"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#
