@@ -9,4 +9,28 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#
+# Convolutional Neural Network Vignette
+
+## CNN vs. NN
+
+CNN stands for Convolutional Neural Network. CNNs are a type of NN that are specifically designed for spatial data; in this case, images. It uses 5 layers:
+
+-   Convolutional layer
+
+-   Pooling layer
+
+-   Flatten layer
+
+-   Fully-connected layer
+
+-   Dropout layer
+
+The convolutional layer detects patterns. It learns hierarchically (meaning it finds the edges and textures of objects contained in the input pictures earlier on in processing, and it recognizes shapes and objects later on).
+
+The pooling layer extracts the features and makes the images smaller.
+
+The flatten layer converts the 3D feature maps created by the pooling layer and turns them into 1-dimensional feature maps. This gives us a large fully-connected layer.
+
+The fully-connected layer combines all of the features that the convolutional layers learned and makes multi-class predictions.
+
+The dropout layer prevents overfitting by randomly dropping 50% of the data.
