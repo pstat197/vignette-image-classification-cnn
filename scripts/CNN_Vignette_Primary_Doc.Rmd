@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## CNN vs. NN
 
-CNN stands for Convolutional Neural Network. CNNs are a type of NN that are specifically designed for spatial data; in this case, images. It uses 5 layers:
+CNN stands for Convolutional Neural Network. They are different from NNs in that CNNs use small learning filters to detect patterns that don't depend on their position in the image, whereas NNs treat all of the input features independently. CNNs are a type of NN that are specifically designed for spatial data; in this case, images. It uses 5 layers:
 
 -   Convolutional layer
 
@@ -25,12 +25,16 @@ CNN stands for Convolutional Neural Network. CNNs are a type of NN that are spec
 
 -   Dropout layer
 
-The convolutional layer detects patterns. It learns hierarchically (meaning it finds the edges and textures of objects contained in the input pictures earlier on in processing, and it recognizes shapes and objects later on).
+The convolutional layer applies learning filters that detect patterns like edges, textures, and eventually more complex features. It learns hierarchically (meaning it finds the edges and textures of objects contained in the input pictures earlier on in processing, and it recognizes shapes and objects later on).
 
-The pooling layer extracts the features and makes the images smaller.
+The pooling layer extracts the features and makes the images smaller, which is more computationally efficient.
 
-The flatten layer converts the 3D feature maps created by the pooling layer and turns them into 1-dimensional feature maps. This gives us a large fully-connected layer.
+The flatten layer converts the 3D feature maps (height x width x channels) created by the convolutional and pooling layers and makes them one-dimensional. This gives us a large fully-connected layer.
 
-The fully-connected layer combines all of the features that the convolutional layers learned and makes multi-class predictions.
+The fully-connected layer is a standard NN that combines all of the features that the convolutional layers learned and makes multi-class predictions.
 
-The dropout layer prevents overfitting by randomly dropping 50% of the data.
+The dropout layer prevents overfitting by randomly setting some fractions of neurons to 0, causing the network to learn redundant representations and not rely on specific neurons.
+
+## Example Dataset
+
+We worked with a dataset of 6500 butterfly images.
