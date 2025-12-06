@@ -12,6 +12,8 @@ Vignette on image classification using convolutional neural networks; created as
 
 Our vignette explores the topic of image classification using CNNs. CNN stands for Convolutional Neural Networks, which have the ability to analyze and derive meaningful information from images. We will utilize a dataset of 6,500 butterfly images for 75 different classes. The outcome is to demonstrate the use of CNNs for image classification and train an image classification model to identify the class of any given butterfly image.
 
+![CNN Visualization](cnn_banner.webp)
+
 ## Repository contents: 
 - `data`:
     - Testing_set.csv: contains unlabeled images to be predicted
