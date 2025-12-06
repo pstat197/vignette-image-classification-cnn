@@ -226,15 +226,17 @@ additional regularization techniques, or larger training datasets.
 
 ### Library Imports and Data Loading
 
-```{python}
-#import pandas as pd
-#import numpy as np
-#import tensorflow as tf
-#from tensorflow.keras.preprocessing.image import #ImageDataGenerator
-#from tensorflow.keras import layers, models
+```{python, cache = TRUE}
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras import layers, models
+```
 
-#train_df = pd.read_csv(TRAIN_CSV)
-#test_df  = pd.read_csv(TEST_CSV)
+```{python}
+train_df = pd.read_csv("../data/Training_set.csv")
+test_df  = pd.read_csv("../data/Testing_set.csv")
 ```
 
 Here, we imported the necessary libraries for data manipulation (pandas,
@@ -245,13 +247,13 @@ filenames and their species labels.
 ### Image Configuration and Data Preprocessing
 
 ```{python}
-#IMAGE_SIZE = (128, 128)
-#BATCH_SIZE = 32
-#train_df = train_df.rename(columns={"Image": "filename", "label": "class"})
+IMAGE_SIZE = (128, 128)
+BATCH_SIZE = 32
+train_df = train_df.rename(columns={"Image": "filename", "label": class"})
 
-#train_df_split, val_df_split = train_test_split(
-#    train_df, test_size=0.2, stratify=train_df['class'], random_state=123
-#)
+train_df_split, val_df_split = train_test_split(
+    train_df, test_size=0.2, stratify=train_df['class'], random_state=123
+)
 ```
 
 We set the image dimensions to 128x128 pixels and batch size to 32
@@ -280,22 +282,24 @@ generators only perform normalization without augmentation. Generators
 automatically load, preprocess, and batch images from directories during
 training.
 
-### Model Architecture Definition 
+### Model Architecture Definition
+
 ```{python}
 #model = models.Sequential([
 #    layers.Conv2D(32, (3, 3), activation="relu"),
 #    layers.MaxPooling2D((2, 2)), ...]) 
 ```
 
-This chunk constructs a sequential CNN with
-    three convolutional blocks. Each block contains a Conv2D layer (with
-    32, 64, then 128 filters respectively) followed by MaxPooling2D.
-    After feature extraction, a Flatten layer converts 3D feature maps
-    to 1D, followed by a Dense layer (256 units), Dropout (0.5), and
-    final Dense output layer (75 units with softmax) for class
-    probability prediction. Total: 6,535,307 trainable parameters.
+This chunk constructs a sequential CNN with three convolutional blocks.
+Each block contains a Conv2D layer (with 32, 64, then 128 filters
+respectively) followed by MaxPooling2D. After feature extraction, a
+Flatten layer converts 3D feature maps to 1D, followed by a Dense layer
+(256 units), Dropout (0.5), and final Dense output layer (75 units with
+softmax) for class probability prediction. Total: 6,535,307 trainable
+parameters.
 
-### Model Compilation 
+### Model Compilation
+
 ```{python}
 #model.compile(
 #  optimizer="adam",
@@ -303,13 +307,13 @@ This chunk constructs a sequential CNN with
 #  metrics=["accuracy"] )
 ```
 
-Here, we configure
-    the model for training using the Adam optimizer (adaptive learning
-    rate), categorical cross-entropy loss function (appropriate for
-    multi-class classification with one-hot encoded labels), and
-    accuracy as the evaluation metric.
+Here, we configure the model for training using the Adam optimizer
+(adaptive learning rate), categorical cross-entropy loss function
+(appropriate for multi-class classification with one-hot encoded
+labels), and accuracy as the evaluation metric.
 
-### Variable Depth CNN Function 
+### Variable Depth CNN Function
+
 ```{python}
 #def build_cnn(num_conv_blocks=3,
 #    base_filters=32, dense_units=256): 
@@ -318,14 +322,14 @@ Here, we configure
 #   return model
 ```
 
-This chunk defines a function to construct CNNs with configurable
-    depth. It allows experimentation with different numbers of
-    convolutional blocks while maintaining consistent architecture
-    patterns (i.e. doubling filters each block, same pooling strategy).
-    It also enables systematic comparison of model complexity versus
-    performance.
+This chunk defines a function to construct CNNs with configurable depth.
+It allows experimentation with different numbers of convolutional blocks
+while maintaining consistent architecture patterns (i.e. doubling
+filters each block, same pooling strategy). It also enables systematic
+comparison of model complexity versus performance.
 
-### Depth Experiment Training Loop 
+### Depth Experiment Training Loop
+
 ```{python}
 #for d in depths:
 #    print(f"\nTraining model with {d} conv blocks...\n") model #=
@@ -333,35 +337,44 @@ This chunk defines a function to construct CNNs with configurable
 #    validation_data=val_gen, epochs=EPOCHS)
 ```
 
-Here, we trained multiple models with
-    1, 2, 3, and 4 convolutional blocks to analyze the relationship
-    between network depth and classification performance. This chunk stores
-    training history for each configuration, and results show validation
-    accuracy increasing from 31.6% (1 block) to 55.7% (2 blocks),
-    demonstrating the importance of depth for feature abstraction.
-    Training was interrupted before completing the 3-block model.
+Here, we trained multiple models with 1, 2, 3, and 4 convolutional
+blocks to analyze the relationship between network depth and
+classification performance. This chunk stores training history for each
+configuration, and results show validation accuracy increasing from
+31.6% (1 block) to 55.7% (2 blocks), demonstrating the importance of
+depth for feature abstraction. Training was interrupted before
+completing the 3-block model.
 
-### Model Training 
+### Model Training
+
 ```{python}
 #EPOCHS = 10 history = model.fit( train_gen,
 #    validation_data=val_gen, epochs=EPOCHS ) 
 ```
-This chunk trains the model for 10
-    epochs using the training generator and validates performance on the
-    validation set after each epoch. Training history records loss and
-    accuracy metrics, showing improvement from 17.8% validation accuracy
-    (epoch 1) to 67.2% (epoch 10).
 
-### Prediction and Export 
+This chunk trains the model for 10 epochs using the training generator
+and validates performance on the validation set after each epoch.
+Training history records loss and accuracy metrics, showing improvement
+from 17.8% validation accuracy (epoch 1) to 67.2% (epoch 10).
+
+### Prediction and Export
+
 ```{python}
 #pred_probs = model.predict(test_gen)
 #    pred_indices = np.argmax(pred_probs, axis=1) pred_labels =
 #    [index_to_class[i] for i in pred_indices] test_df['predicted_label']
 #    = pred_labels 
 ```
-Here, we generated predictions on the 2,786 test images by
-    computing class probability distributions, selecting the highest
-    probability class for each image, and mapping numeric indices back
-    to butterfly species names. Predictions are appended to the test
-    dataframe and exported to CSV file maintaining original image order
-    (shuffle=False ensures correct alignment).
+
+Here, we generated predictions on the 2,786 test images by computing
+class probability distributions, selecting the highest probability class
+for each image, and mapping numeric indices back to butterfly species
+names. Predictions are appended to the test dataframe and exported to
+CSV file maintaining original image order (shuffle=False ensures correct
+alignment).
+
+
+```{python}
+test_df
+```
+
